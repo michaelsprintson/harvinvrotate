@@ -1,0 +1,14 @@
+download this github to a folder on your computer
+create a file called .env (no extension at all, not even txt)
+in the file, type "DISCORD_TOKEN=<yourtoken>", no quotes or carrots
+open a bash terminal in the folder
+type the following lines one-by-one:
+
+	python3 -m venv henv
+	source henv/bin/activate
+	pip install --upgrade git+https://github.com/Merubokkusu/Discord-S.C.U.M.git#egg=discum
+	pip install python-dotenv numpy
+	--> go to discord channel
+	--> type "$startinv" 
+		- if you type someone else's id (enable discord dev mode -> copy id)
+		- if you leave it blank, it does harveys id

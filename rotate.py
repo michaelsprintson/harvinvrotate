@@ -18,6 +18,8 @@ import sys
 ID_DICT = {"harvey":251112534231220225, "brittany": 376970858859593728}
 MUDAE_ID = 432610292342587392
 INPUT_NAME = sys.argv[1]
+NUM_TO_ROTATE = 40
+WAIT_TIME = 3600
 
 load_dotenv()
 # Grab the API token from the .env file.
@@ -83,17 +85,17 @@ def helloworld(resp):
                     sleep(1)
                     # send pr to grab bumber of items in inventory
                     bot.sendMessage(m['channel_id'],f"$pr {id_to_scrape}")
-                    num_of_invs = inv_size // 40
+                    num_of_invs = inv_size // NUM_TO_ROTATE
                     while inv_size == 0:
                         print("inv size still 0, waiting 5")
                         sleep(5)
                         #calculate the number of rotations to do
-                        num_of_invs = inv_size // 40
+                        num_of_invs = inv_size // NUM_TO_ROTATE
                     print("found", num_of_invs, f"rotations needed for inv size {inv_size}")
                     # perform rotations by posting the inventory by calling mmi at rotation location and letting the command above rotate
                     for i in range(0,num_of_invs+1):
                         if i != 0:
-                            bot.sendMessage(m['channel_id'],f"$mmi {id_to_scrape} ${i * 40}")
+                            bot.sendMessage(m['channel_id'],f"$mmi {id_to_scrape} ${i * NUM_TO_ROTATE}")
                         else:
                             bot.sendMessage(m['channel_id'],f"$mmi {id_to_scrape}")
                         print("finished rotation, watiing for next")
@@ -102,8 +104,8 @@ def helloworld(resp):
                 while (True):
                     #run the rotator every hour
                     startscrape()
-                    print("sleeping 3600")
-                    sleep(3600)
+                    print(f"sleeping {WAIT_TIME}")
+                    sleep(WAIT_TIME)
             
 
             
